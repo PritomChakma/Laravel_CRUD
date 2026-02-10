@@ -4,13 +4,16 @@ export default function Create() {
     const { data, setData, post, processing, errors } = useForm({
         name: "",
         description: "",
-        image: "",
+        image: "null",
     });
 
-    const submit = (e) => {
-        e.preventDefault();
-        post("/posts"); // resource route: posts.store
-    };
+  const submit = (e) => {
+    e.preventDefault();
+    post("/posts", {
+      forceFormData: true, 
+    });
+  };
+
 
     return (
         <>

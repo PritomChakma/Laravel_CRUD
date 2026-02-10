@@ -27,27 +27,27 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-      $validated = $request->validate([
-        "name"=>"required",
-        "description"=>"required",
-        "image"=>"nullable | mimes:jepg,png",
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        "name" => "required|string|max:255",
+        "description" => "required|string",
+        "image" => "nullable|mimes:jpeg,png,jpg|max:2048",
+    ]);
 
-      ]);
+    $post = new Post();
+    $post->name = $validated["name"];
+    $post->description = $validated["description"];
 
-
-
-        $post = new Post;
-        $post->name = $request->name;
-        $post->description = $request->description;
-        $post->image = $request->image;
-
-        $post->save();
-
-        return redirect()->route("home")->with("success", "Your post has been created!");
-
+    if ($request->hasFile("image")) {
+        $path = $request->file("image")->store("posts", "public");
+        $post->image = $path;
     }
+
+    $post->save();
+
+    return redirect()->route("home")->with("success", "Your post has been created!");
+}
 
     /**
      * Display the specified resource.
@@ -76,7 +76,8 @@ class PostController extends Controller
     $validated = $request->validate([
         "name" => "required",
         "description" => "required",
-        "image" => "nullable|mimes:jpeg,png,jpg|max:2048",
+       "image" => "nullable|image|mimes:jpeg,png,jpg,webp|max:2048",
+
     ]);
 
     $post = Post::findOrFail($id);

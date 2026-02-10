@@ -37,7 +37,7 @@ const Edit = ({ post }) => {
               <label className="mb-1 block font-medium text-gray-700">Name</label>
               <input
                 type="text"
-                value={data.name} // ✅ data থেকে value
+                value={data.name} 
                 onChange={(e) => setData("name", e.target.value)}
                 className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
                 placeholder="Enter post name"
@@ -49,7 +49,7 @@ const Edit = ({ post }) => {
             <div>
               <label className="mb-1 block font-medium text-gray-700">Description</label>
               <textarea
-                value={data.description} // ✅ data থেকে value
+                value={data.description} 
                 onChange={(e) => setData("description", e.target.value)}
                 className="w-full rounded-md border px-3 py-2 focus:ring focus:ring-blue-200"
                 rows="4"

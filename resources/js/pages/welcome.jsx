@@ -20,7 +20,7 @@ export default function Welcome({ posts }) {
                         <h1 className="text-2xl font-bold text-gray-700">Home</h1>
 
                         <Link href="/create" className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
-                            + Add New Post
+                            + Add New User
                         </Link>
                     </div>
 
@@ -49,13 +49,12 @@ export default function Welcome({ posts }) {
                                                 <td className="px-4 py-3">
                                                     <p className="line-clamp-2 max-w-md">{post.description}</p>
                                                 </td>
-
-                                                <td className="px-4 py-3">
+                                                <td className="px-4 py-2">
                                                     {post.image ? (
                                                         <img
-                                                            src={`/storage/${post.image}`}
+                                                            src={`/storage/${post.image}`} 
                                                             alt={post.name}
-                                                            className="h-12 w-12 rounded border object-cover"
+                                                            className="h-12 w-12 rounded object-cover"
                                                         />
                                                     ) : (
                                                         <span className="text-gray-400">No image</span>
